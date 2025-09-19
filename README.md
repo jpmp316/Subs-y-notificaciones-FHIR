@@ -110,7 +110,7 @@ En la terminal donde corre el `fhir-callback`, deberías ver:
 ├── docker-compose.yml
 ├── callback-service/
 │   ├── Dockerfile
-│   └── index.js   # Servicio callback Node.js
+│   └── server.js   # Servicio callback Node.js
 ```
 
 ---
