@@ -136,8 +136,3 @@ En la terminal donde corre el `fhir-callback`, deberías ver:
 
 ---
 
-👉 Con este flujo ya puedes levantar tu entorno completo, probar notificaciones en FHIR y enviarlas a RabbitMQ.
-
----
-
-¿Quieres que lo deje como **README.md en formato markdown final listo para copiar/pegar** o prefieres que lo escriba como pasos numerados más estilo "tutorial práctico" en texto plano?
