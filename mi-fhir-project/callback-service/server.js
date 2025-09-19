@@ -5,10 +5,10 @@ async function connectRabbitMQ(retries = 10, delay = 5000) {
   for (let i = 0; i < retries; i++) {
     try {
       const conn = await amqp.connect('amqp://rabbitmq');
-      console.log('✅ Conectado a RabbitMQ');
+      console.log('Conectado a RabbitMQ');
       return conn;
     } catch (err) {
-      console.error(`❌ Falló intento ${i + 1}/${retries}: ${err.message}`);
+      console.error(`Falló intento ${i + 1}/${retries}: ${err.message}`);
       if (i < retries - 1) {
         console.log(`Reintentando en ${delay / 1000}s...`);
         await new Promise(res => setTimeout(res, delay));
@@ -31,24 +31,25 @@ async function start() {
 
   app.post('/callback', (req, res) => {
     const body = JSON.stringify(req.body || {});
-    console.log('📩 Callback recibido. Publicando a RabbitMQ...');
+    console.log('Callback recibido. Publicando a RabbitMQ...');
     channel.publish('fhir-exchange', 'patient.events', Buffer.from(body));
     res.status(200).send('ok');
   });
 
 app.put(['/callback', '/callback/*'], (req, res) => {
   const body = JSON.stringify(req.body || {});
-  console.log('📩 Callback recibido (PUT). Publicando a RabbitMQ...');
+  console.log('Callback recibido (PUT). Publicando a RabbitMQ...');
   channel.publish('fhir-exchange', 'patient.events', Buffer.from(body));
   res.status(200).send('ok');
 });
 
 
 
-  app.listen(3000, () => console.log('🚀 Callback service en puerto 3000'));
+  app.listen(3000, () => console.log('Callback service en puerto 3000'));
 }
 
 start().catch(err => {
-  console.error('❌ Error fatal:', err);
+  console.error('Error fatal:', err);
   process.exit(1);
 });
+
